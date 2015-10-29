@@ -1,0 +1,5 @@
+INSERT into RECIPE_CATEGORY VALUES
+('Shortdrink','Als Shortdrinks gelten Mixgetränke, die bis zu 10 cl Flüssigkeit enthalten. Sie weisen regelmäßig einen hohen Anteil alkoholischer Zutaten auf und werden überwiegend „straight up“, also ohne Eis, in Cocktailschalen mit Stiel serviert. Oft wird auch das Wort Cocktail in diesem engen Sinn, also als Oberbegriff für eine Vielzahl von Shortdrinks und im Gegensatz zu Longdrinks verwendet.'),
+('Longdrink','Longdrinks sind dementsprechend größere Mixgetränke mit mehr als 10 cl, eher noch 15–20 cl Flüssigkeit, z. B. alle Highballs, Collinses oder mit Säften verlängerte Getränke wie Campari Orange. Die Grenzen zwischen Short- und Longdrinks sind naturgemäß fließend und eine große Zahl von Mixgetränken lässt sich nicht klar zuordnen, weil sie keiner der beiden Typisierungen entsprechen.'),
+('Shooter','Shooter, Shots oder Kurze, die meist nur aus 2 oder 4 cl Spirituosen, pur oder vermischt, in einem Schnapsglas bestehen und in einem einzigen Zug getrunken werden.'),
+('Virgin',' Als alkoholfrei gelten nach deutschem Lebensmittelrecht Getränke mit weniger als 0,5 % vol. Alkohol.')

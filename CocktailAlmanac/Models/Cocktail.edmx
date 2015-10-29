@@ -1,0 +1,1210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CocktailModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ALLERGEN">
+          <Key>
+            <PropertyRef Name="AllergenId" />
+          </Key>
+          <Property Name="AllergenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LongName" Type="nvarchar(max)" />
+          <Property Name="ImageURL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="UserLanguage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="IngredientId" />
+          </Key>
+          <Property Name="IngredientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateSubmitted" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="SubmittedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AlcoholPercent" Type="float" Nullable="false" />
+          <Property Name="MeasurementUnitId" Type="int" Nullable="false" />
+          <Property Name="ImageURL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_ALLERGEN">
+          <Key>
+            <PropertyRef Name="IngredientId" />
+            <PropertyRef Name="AllergenId" />
+          </Key>
+          <Property Name="Present" Type="bit" Nullable="false" />
+          <Property Name="IngredientId" Type="int" Nullable="false" />
+          <Property Name="AllergenId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_NUTRITIONAL_INFO">
+          <Key>
+            <PropertyRef Name="IngredientId" />
+            <PropertyRef Name="Nutritional_InfoId" />
+          </Key>
+          <Property Name="Amount" Type="bit" Nullable="false" />
+          <Property Name="IngredientId" Type="int" Nullable="false" />
+          <Property Name="Nutritional_InfoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MEASUREMENT_UNIT">
+          <Key>
+            <PropertyRef Name="MeasurementUnitId" />
+          </Key>
+          <Property Name="MeasurementUnitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LongName" Type="nvarchar(max)" />
+          <Property Name="MlFactor" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NUTRITIONAL_INFO">
+          <Key>
+            <PropertyRef Name="Nutritional_InfoId" />
+          </Key>
+          <Property Name="Nutritional_InfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LongName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RECIPE">
+          <Key>
+            <PropertyRef Name="RecipeId" />
+          </Key>
+          <Property Name="RecipeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rating" Type="float" />
+          <Property Name="SubmittedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Votes" Type="int" />
+          <Property Name="SubmittedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Category" Type="int" />
+          <Property Name="ImageURL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RECIPE_CATEGORY">
+          <Key>
+            <PropertyRef Name="Recipe_CategoryId" />
+          </Key>
+          <Property Name="Recipe_CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RECIPE_INGREDIENT">
+          <Key>
+            <PropertyRef Name="RecipeId" />
+            <PropertyRef Name="IngredientId" />
+          </Key>
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="RecipeId" Type="int" Nullable="false" />
+          <Property Name="IngredientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECIPE_STEP">
+          <Key>
+            <PropertyRef Name="RecipeId" />
+            <PropertyRef Name="IngredientId" />
+          </Key>
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="RecipeId" Type="int" Nullable="false" />
+          <Property Name="IngredientId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__INGREDIEN__Modif__44FF419A">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INGREDIEN__Submi__440B1D61">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="SubmittedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECIPE__Modified__4316F928">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECIPE__Submitte__4222D4EF">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="SubmittedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_ALLERGEN_ALLERGEN">
+          <End Role="ALLERGEN" Type="Self.ALLERGEN" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT_ALLERGEN" Type="Self.INGREDIENT_ALLERGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ALLERGEN">
+              <PropertyRef Name="AllergenId" />
+            </Principal>
+            <Dependent Role="INGREDIENT_ALLERGEN">
+              <PropertyRef Name="AllergenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_ALLERGEN_INGREDIENT">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT_ALLERGEN" Type="Self.INGREDIENT_ALLERGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="INGREDIENT_ALLERGEN">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_MEASUREMENT_UNIT">
+          <End Role="MEASUREMENT_UNIT" Type="Self.MEASUREMENT_UNIT" Multiplicity="1" />
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEASUREMENT_UNIT">
+              <PropertyRef Name="MeasurementUnitId" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="MeasurementUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_NUTRITIONAL_INFO_ALLERGEN">
+          <End Role="NUTRITIONAL_INFO" Type="Self.NUTRITIONAL_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT_NUTRITIONAL_INFO" Type="Self.INGREDIENT_NUTRITIONAL_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NUTRITIONAL_INFO">
+              <PropertyRef Name="Nutritional_InfoId" />
+            </Principal>
+            <Dependent Role="INGREDIENT_NUTRITIONAL_INFO">
+              <PropertyRef Name="Nutritional_InfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT_NUTRITIONAL_INFO" Type="Self.INGREDIENT_NUTRITIONAL_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="INGREDIENT_NUTRITIONAL_INFO">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_INGREDIENT_INGREDIENT">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIPE_INGREDIENT" Type="Self.RECIPE_INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="RECIPE_INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_INGREDIENT_RECIPE">
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIPE_INGREDIENT" Type="Self.RECIPE_INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIPE">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RECIPE_INGREDIENT">
+              <PropertyRef Name="RecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_RECIPE_CATEGORY">
+          <End Role="RECIPE_CATEGORY" Type="Self.RECIPE_CATEGORY" Multiplicity="0..1" />
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIPE_CATEGORY">
+              <PropertyRef Name="Recipe_CategoryId" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_STEP_INGREDIENT">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIPE_STEP" Type="Self.RECIPE_STEP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="RECIPE_STEP">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_STEP_RECIPE">
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIPE_STEP" Type="Self.RECIPE_STEP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIPE">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RECIPE_STEP">
+              <PropertyRef Name="RecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CocktailModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ALLERGEN" EntityType="Self.ALLERGEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT_ALLERGEN" EntityType="Self.INGREDIENT_ALLERGEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT_NUTRITIONAL_INFO" EntityType="Self.INGREDIENT_NUTRITIONAL_INFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEASUREMENT_UNIT" EntityType="Self.MEASUREMENT_UNIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NUTRITIONAL_INFO" EntityType="Self.NUTRITIONAL_INFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECIPE" EntityType="Self.RECIPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECIPE_CATEGORY" EntityType="Self.RECIPE_CATEGORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECIPE_INGREDIENT" EntityType="Self.RECIPE_INGREDIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECIPE_STEP" EntityType="Self.RECIPE_STEP" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__INGREDIEN__Modif__44FF419A" Association="Self.FK__INGREDIEN__Modif__44FF419A">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INGREDIEN__Submi__440B1D61" Association="Self.FK__INGREDIEN__Submi__440B1D61">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECIPE__Modified__4316F928" Association="Self.FK__RECIPE__Modified__4316F928">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="RECIPE" EntitySet="RECIPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECIPE__Submitte__4222D4EF" Association="Self.FK__RECIPE__Submitte__4222D4EF">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="RECIPE" EntitySet="RECIPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_ALLERGEN_ALLERGEN" Association="Self.FK_INGREDIENT_ALLERGEN_ALLERGEN">
+            <End Role="ALLERGEN" EntitySet="ALLERGEN" />
+            <End Role="INGREDIENT_ALLERGEN" EntitySet="INGREDIENT_ALLERGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_ALLERGEN_INGREDIENT" Association="Self.FK_INGREDIENT_ALLERGEN_INGREDIENT">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="INGREDIENT_ALLERGEN" EntitySet="INGREDIENT_ALLERGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_MEASUREMENT_UNIT" Association="Self.FK_INGREDIENT_MEASUREMENT_UNIT">
+            <End Role="MEASUREMENT_UNIT" EntitySet="MEASUREMENT_UNIT" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_NUTRITIONAL_INFO_ALLERGEN" Association="Self.FK_INGREDIENT_NUTRITIONAL_INFO_ALLERGEN">
+            <End Role="NUTRITIONAL_INFO" EntitySet="NUTRITIONAL_INFO" />
+            <End Role="INGREDIENT_NUTRITIONAL_INFO" EntitySet="INGREDIENT_NUTRITIONAL_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT" Association="Self.FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="INGREDIENT_NUTRITIONAL_INFO" EntitySet="INGREDIENT_NUTRITIONAL_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_INGREDIENT_INGREDIENT" Association="Self.FK_RECIPE_INGREDIENT_INGREDIENT">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIPE_INGREDIENT" EntitySet="RECIPE_INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_INGREDIENT_RECIPE" Association="Self.FK_RECIPE_INGREDIENT_RECIPE">
+            <End Role="RECIPE" EntitySet="RECIPE" />
+            <End Role="RECIPE_INGREDIENT" EntitySet="RECIPE_INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_RECIPE_CATEGORY" Association="Self.FK_RECIPE_RECIPE_CATEGORY">
+            <End Role="RECIPE_CATEGORY" EntitySet="RECIPE_CATEGORY" />
+            <End Role="RECIPE" EntitySet="RECIPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_STEP_INGREDIENT" Association="Self.FK_RECIPE_STEP_INGREDIENT">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIPE_STEP" EntitySet="RECIPE_STEP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_STEP_RECIPE" Association="Self.FK_RECIPE_STEP_RECIPE">
+            <End Role="RECIPE" EntitySet="RECIPE" />
+            <End Role="RECIPE_STEP" EntitySet="RECIPE_STEP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CocktailModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ALLERGEN">
+          <Key>
+            <PropertyRef Name="AllergenId" />
+          </Key>
+          <Property Name="AllergenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LongName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="INGREDIENT_ALLERGEN" Relationship="Self.FK_INGREDIENT_ALLERGEN_ALLERGEN" FromRole="ALLERGEN" ToRole="INGREDIENT_ALLERGEN" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CocktailModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CocktailModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CocktailModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="IngredientId" />
+          </Key>
+          <Property Name="IngredientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="SubmittedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AlcoholPercent" Type="Double" Nullable="false" />
+          <Property Name="MeasurementUnitId" Type="Int32" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="INGREDIENT_ALLERGEN" Relationship="Self.FK_INGREDIENT_ALLERGEN_INGREDIENT" FromRole="INGREDIENT" ToRole="INGREDIENT_ALLERGEN" />
+          <NavigationProperty Name="MEASUREMENT_UNIT" Relationship="Self.FK_INGREDIENT_MEASUREMENT_UNIT" FromRole="INGREDIENT" ToRole="MEASUREMENT_UNIT" />
+          <NavigationProperty Name="INGREDIENT_NUTRITIONAL_INFO" Relationship="Self.FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT" FromRole="INGREDIENT" ToRole="INGREDIENT_NUTRITIONAL_INFO" />
+          <NavigationProperty Name="RECIPE_INGREDIENT" Relationship="Self.FK_RECIPE_INGREDIENT_INGREDIENT" FromRole="INGREDIENT" ToRole="RECIPE_INGREDIENT" />
+          <NavigationProperty Name="RECIPE_STEP" Relationship="Self.FK_RECIPE_STEP_INGREDIENT" FromRole="INGREDIENT" ToRole="RECIPE_STEP" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CocktailModel.FK__INGREDIEN__Modif__44FF419A" FromRole="INGREDIENT" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="CocktailModel.FK__INGREDIEN__Submi__440B1D61" FromRole="INGREDIENT" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_ALLERGEN">
+          <Key>
+            <PropertyRef Name="IngredientId" />
+            <PropertyRef Name="AllergenId" />
+          </Key>
+          <Property Name="Present" Type="Boolean" Nullable="false" />
+          <Property Name="IngredientId" Type="Int32" Nullable="false" />
+          <Property Name="AllergenId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ALLERGEN" Relationship="Self.FK_INGREDIENT_ALLERGEN_ALLERGEN" FromRole="INGREDIENT_ALLERGEN" ToRole="ALLERGEN" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.FK_INGREDIENT_ALLERGEN_INGREDIENT" FromRole="INGREDIENT_ALLERGEN" ToRole="INGREDIENT" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_NUTRITIONAL_INFO">
+          <Key>
+            <PropertyRef Name="IngredientId" />
+            <PropertyRef Name="Nutritional_InfoId" />
+          </Key>
+          <Property Name="Amount" Type="Boolean" Nullable="false" />
+          <Property Name="IngredientId" Type="Int32" Nullable="false" />
+          <Property Name="Nutritional_InfoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT" FromRole="INGREDIENT_NUTRITIONAL_INFO" ToRole="INGREDIENT" />
+          <NavigationProperty Name="NUTRITIONAL_INFO" Relationship="Self.FK_INGREDIENT_NUTRITIONAL_INFO_ALLERGEN" FromRole="INGREDIENT_NUTRITIONAL_INFO" ToRole="NUTRITIONAL_INFO" />
+        </EntityType>
+        <EntityType Name="MEASUREMENT_UNIT">
+          <Key>
+            <PropertyRef Name="MeasurementUnitId" />
+          </Key>
+          <Property Name="MeasurementUnitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LongName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MlFactor" Type="Double" Nullable="false" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.FK_INGREDIENT_MEASUREMENT_UNIT" FromRole="MEASUREMENT_UNIT" ToRole="INGREDIENT" />
+        </EntityType>
+        <EntityType Name="NUTRITIONAL_INFO">
+          <Key>
+            <PropertyRef Name="Nutritional_InfoId" />
+          </Key>
+          <Property Name="Nutritional_InfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LongName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="INGREDIENT_NUTRITIONAL_INFO" Relationship="Self.FK_INGREDIENT_NUTRITIONAL_INFO_ALLERGEN" FromRole="NUTRITIONAL_INFO" ToRole="INGREDIENT_NUTRITIONAL_INFO" />
+        </EntityType>
+        <EntityType Name="RECIPE">
+          <Key>
+            <PropertyRef Name="RecipeId" />
+          </Key>
+          <Property Name="RecipeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rating" Type="Double" />
+          <Property Name="SubmittedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Votes" Type="Int32" />
+          <Property Name="SubmittedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RECIPE_INGREDIENT" Relationship="Self.FK_RECIPE_INGREDIENT_RECIPE" FromRole="RECIPE" ToRole="RECIPE_INGREDIENT" />
+          <NavigationProperty Name="RECIPE_CATEGORY" Relationship="Self.FK_RECIPE_RECIPE_CATEGORY" FromRole="RECIPE" ToRole="RECIPE_CATEGORY" />
+          <NavigationProperty Name="RECIPE_STEP" Relationship="Self.FK_RECIPE_STEP_RECIPE" FromRole="RECIPE" ToRole="RECIPE_STEP" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CocktailModel.FK__RECIPE__Modified__4316F928" FromRole="RECIPE" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="CocktailModel.FK__RECIPE__Submitte__4222D4EF" FromRole="RECIPE" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="RECIPE_CATEGORY">
+          <Key>
+            <PropertyRef Name="Recipe_CategoryId" />
+          </Key>
+          <Property Name="Recipe_CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RECIPE" Relationship="Self.FK_RECIPE_RECIPE_CATEGORY" FromRole="RECIPE_CATEGORY" ToRole="RECIPE" />
+        </EntityType>
+        <EntityType Name="RECIPE_INGREDIENT">
+          <Key>
+            <PropertyRef Name="RecipeId" />
+            <PropertyRef Name="IngredientId" />
+          </Key>
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="RecipeId" Type="Int32" Nullable="false" />
+          <Property Name="IngredientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.FK_RECIPE_INGREDIENT_INGREDIENT" FromRole="RECIPE_INGREDIENT" ToRole="INGREDIENT" />
+          <NavigationProperty Name="RECIPE" Relationship="Self.FK_RECIPE_INGREDIENT_RECIPE" FromRole="RECIPE_INGREDIENT" ToRole="RECIPE" />
+        </EntityType>
+        <EntityType Name="RECIPE_STEP">
+          <Key>
+            <PropertyRef Name="RecipeId" />
+            <PropertyRef Name="IngredientId" />
+          </Key>
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RecipeId" Type="Int32" Nullable="false" />
+          <Property Name="IngredientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.FK_RECIPE_STEP_INGREDIENT" FromRole="RECIPE_STEP" ToRole="INGREDIENT" />
+          <NavigationProperty Name="RECIPE" Relationship="Self.FK_RECIPE_STEP_RECIPE" FromRole="RECIPE_STEP" ToRole="RECIPE" />
+        </EntityType>
+        <Association Name="FK_INGREDIENT_ALLERGEN_ALLERGEN">
+          <End Role="ALLERGEN" Type="Self.ALLERGEN" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT_ALLERGEN" Type="Self.INGREDIENT_ALLERGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ALLERGEN">
+              <PropertyRef Name="AllergenId" />
+            </Principal>
+            <Dependent Role="INGREDIENT_ALLERGEN">
+              <PropertyRef Name="AllergenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_ALLERGEN_INGREDIENT">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT_ALLERGEN" Type="Self.INGREDIENT_ALLERGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="INGREDIENT_ALLERGEN">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_MEASUREMENT_UNIT">
+          <End Role="MEASUREMENT_UNIT" Type="Self.MEASUREMENT_UNIT" Multiplicity="1" />
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEASUREMENT_UNIT">
+              <PropertyRef Name="MeasurementUnitId" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="MeasurementUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT_NUTRITIONAL_INFO" Type="Self.INGREDIENT_NUTRITIONAL_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="INGREDIENT_NUTRITIONAL_INFO">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_INGREDIENT_INGREDIENT">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIPE_INGREDIENT" Type="Self.RECIPE_INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="RECIPE_INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_STEP_INGREDIENT">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIPE_STEP" Type="Self.RECIPE_STEP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="RECIPE_STEP">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INGREDIENT_NUTRITIONAL_INFO_ALLERGEN">
+          <End Role="NUTRITIONAL_INFO" Type="Self.NUTRITIONAL_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT_NUTRITIONAL_INFO" Type="Self.INGREDIENT_NUTRITIONAL_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NUTRITIONAL_INFO">
+              <PropertyRef Name="Nutritional_InfoId" />
+            </Principal>
+            <Dependent Role="INGREDIENT_NUTRITIONAL_INFO">
+              <PropertyRef Name="Nutritional_InfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_INGREDIENT_RECIPE">
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIPE_INGREDIENT" Type="Self.RECIPE_INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIPE">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RECIPE_INGREDIENT">
+              <PropertyRef Name="RecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_RECIPE_CATEGORY">
+          <End Role="RECIPE_CATEGORY" Type="Self.RECIPE_CATEGORY" Multiplicity="0..1" />
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIPE_CATEGORY">
+              <PropertyRef Name="Recipe_CategoryId" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECIPE_STEP_RECIPE">
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIPE_STEP" Type="Self.RECIPE_STEP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIPE">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RECIPE_STEP">
+              <PropertyRef Name="RecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CocktailEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="ALLERGEN" EntityType="Self.ALLERGEN" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" />
+          <EntitySet Name="INGREDIENT_ALLERGEN" EntityType="Self.INGREDIENT_ALLERGEN" />
+          <EntitySet Name="INGREDIENT_NUTRITIONAL_INFO" EntityType="Self.INGREDIENT_NUTRITIONAL_INFO" />
+          <EntitySet Name="MEASUREMENT_UNIT" EntityType="Self.MEASUREMENT_UNIT" />
+          <EntitySet Name="NUTRITIONAL_INFO" EntityType="Self.NUTRITIONAL_INFO" />
+          <EntitySet Name="RECIPE" EntityType="Self.RECIPE" />
+          <EntitySet Name="RECIPE_CATEGORY" EntityType="Self.RECIPE_CATEGORY" />
+          <EntitySet Name="RECIPE_INGREDIENT" EntityType="Self.RECIPE_INGREDIENT" />
+          <EntitySet Name="RECIPE_STEP" EntityType="Self.RECIPE_STEP" />
+          <AssociationSet Name="FK_INGREDIENT_ALLERGEN_ALLERGEN" Association="Self.FK_INGREDIENT_ALLERGEN_ALLERGEN">
+            <End Role="ALLERGEN" EntitySet="ALLERGEN" />
+            <End Role="INGREDIENT_ALLERGEN" EntitySet="INGREDIENT_ALLERGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_ALLERGEN_INGREDIENT" Association="Self.FK_INGREDIENT_ALLERGEN_INGREDIENT">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="INGREDIENT_ALLERGEN" EntitySet="INGREDIENT_ALLERGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_MEASUREMENT_UNIT" Association="Self.FK_INGREDIENT_MEASUREMENT_UNIT">
+            <End Role="MEASUREMENT_UNIT" EntitySet="MEASUREMENT_UNIT" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT" Association="Self.FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="INGREDIENT_NUTRITIONAL_INFO" EntitySet="INGREDIENT_NUTRITIONAL_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_INGREDIENT_INGREDIENT" Association="Self.FK_RECIPE_INGREDIENT_INGREDIENT">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIPE_INGREDIENT" EntitySet="RECIPE_INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_STEP_INGREDIENT" Association="Self.FK_RECIPE_STEP_INGREDIENT">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIPE_STEP" EntitySet="RECIPE_STEP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INGREDIENT_NUTRITIONAL_INFO_ALLERGEN" Association="Self.FK_INGREDIENT_NUTRITIONAL_INFO_ALLERGEN">
+            <End Role="NUTRITIONAL_INFO" EntitySet="NUTRITIONAL_INFO" />
+            <End Role="INGREDIENT_NUTRITIONAL_INFO" EntitySet="INGREDIENT_NUTRITIONAL_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_INGREDIENT_RECIPE" Association="Self.FK_RECIPE_INGREDIENT_RECIPE">
+            <End Role="RECIPE" EntitySet="RECIPE" />
+            <End Role="RECIPE_INGREDIENT" EntitySet="RECIPE_INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_RECIPE_CATEGORY" Association="Self.FK_RECIPE_RECIPE_CATEGORY">
+            <End Role="RECIPE_CATEGORY" EntitySet="RECIPE_CATEGORY" />
+            <End Role="RECIPE" EntitySet="RECIPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECIPE_STEP_RECIPE" Association="Self.FK_RECIPE_STEP_RECIPE">
+            <End Role="RECIPE" EntitySet="RECIPE" />
+            <End Role="RECIPE_STEP" EntitySet="RECIPE_STEP" />
+          </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="CocktailModel.AspNetUsers" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CocktailModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="CocktailModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INGREDIEN__Modif__44FF419A" Association="CocktailModel.FK__INGREDIEN__Modif__44FF419A">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INGREDIEN__Submi__440B1D61" Association="CocktailModel.FK__INGREDIEN__Submi__440B1D61">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECIPE__Modified__4316F928" Association="CocktailModel.FK__RECIPE__Modified__4316F928">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="RECIPE" EntitySet="RECIPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECIPE__Submitte__4222D4EF" Association="CocktailModel.FK__RECIPE__Submitte__4222D4EF">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="RECIPE" EntitySet="RECIPE" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="CocktailModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="UserLanguage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="CocktailModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="CocktailModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="INGREDIENT" Relationship="CocktailModel.FK__INGREDIEN__Modif__44FF419A" FromRole="AspNetUsers" ToRole="INGREDIENT" />
+          <NavigationProperty Name="INGREDIENT1" Relationship="CocktailModel.FK__INGREDIEN__Submi__440B1D61" FromRole="AspNetUsers" ToRole="INGREDIENT" />
+          <NavigationProperty Name="RECIPE" Relationship="CocktailModel.FK__RECIPE__Modified__4316F928" FromRole="AspNetUsers" ToRole="RECIPE" />
+          <NavigationProperty Name="RECIPE1" Relationship="CocktailModel.FK__RECIPE__Submitte__4222D4EF" FromRole="AspNetUsers" ToRole="RECIPE" />
+          <NavigationProperty Name="AspNetRoles" Relationship="CocktailModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="CocktailModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CocktailModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="CocktailModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CocktailModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INGREDIEN__Modif__44FF419A">
+          <End Type="CocktailModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="CocktailModel.INGREDIENT" Role="INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INGREDIEN__Submi__440B1D61">
+          <End Type="CocktailModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="CocktailModel.INGREDIENT" Role="INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="SubmittedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECIPE__Modified__4316F928">
+          <End Type="CocktailModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="CocktailModel.RECIPE" Role="RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECIPE__Submitte__4222D4EF">
+          <End Type="CocktailModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="CocktailModel.RECIPE" Role="RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="SubmittedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="CocktailModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="CocktailModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CocktailModelStoreContainer" CdmEntityContainer="CocktailEntities1">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="CocktailModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALLERGEN">
+            <EntityTypeMapping TypeName="CocktailModel.ALLERGEN">
+              <MappingFragment StoreEntitySet="ALLERGEN">
+                <ScalarProperty Name="AllergenId" ColumnName="AllergenId" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="LongName" ColumnName="LongName" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="CocktailModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="CocktailModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="CocktailModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENT">
+            <EntityTypeMapping TypeName="CocktailModel.INGREDIENT">
+              <MappingFragment StoreEntitySet="INGREDIENT">
+                <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="AlcoholPercent" ColumnName="AlcoholPercent" />
+                <ScalarProperty Name="MeasurementUnitId" ColumnName="MeasurementUnitId" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENT_ALLERGEN">
+            <EntityTypeMapping TypeName="CocktailModel.INGREDIENT_ALLERGEN">
+              <MappingFragment StoreEntitySet="INGREDIENT_ALLERGEN">
+                <ScalarProperty Name="Present" ColumnName="Present" />
+                <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+                <ScalarProperty Name="AllergenId" ColumnName="AllergenId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENT_NUTRITIONAL_INFO">
+            <EntityTypeMapping TypeName="CocktailModel.INGREDIENT_NUTRITIONAL_INFO">
+              <MappingFragment StoreEntitySet="INGREDIENT_NUTRITIONAL_INFO">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+                <ScalarProperty Name="Nutritional_InfoId" ColumnName="Nutritional_InfoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEASUREMENT_UNIT">
+            <EntityTypeMapping TypeName="CocktailModel.MEASUREMENT_UNIT">
+              <MappingFragment StoreEntitySet="MEASUREMENT_UNIT">
+                <ScalarProperty Name="MeasurementUnitId" ColumnName="MeasurementUnitId" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="LongName" ColumnName="LongName" />
+                <ScalarProperty Name="MlFactor" ColumnName="MlFactor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NUTRITIONAL_INFO">
+            <EntityTypeMapping TypeName="CocktailModel.NUTRITIONAL_INFO">
+              <MappingFragment StoreEntitySet="NUTRITIONAL_INFO">
+                <ScalarProperty Name="Nutritional_InfoId" ColumnName="Nutritional_InfoId" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="LongName" ColumnName="LongName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIPE">
+            <EntityTypeMapping TypeName="CocktailModel.RECIPE">
+              <MappingFragment StoreEntitySet="RECIPE">
+                <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Votes" ColumnName="Votes" />
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIPE_CATEGORY">
+            <EntityTypeMapping TypeName="CocktailModel.RECIPE_CATEGORY">
+              <MappingFragment StoreEntitySet="RECIPE_CATEGORY">
+                <ScalarProperty Name="Recipe_CategoryId" ColumnName="Recipe_CategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIPE_INGREDIENT">
+            <EntityTypeMapping TypeName="CocktailModel.RECIPE_INGREDIENT">
+              <MappingFragment StoreEntitySet="RECIPE_INGREDIENT">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+                <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIPE_STEP">
+            <EntityTypeMapping TypeName="CocktailModel.RECIPE_STEP">
+              <MappingFragment StoreEntitySet="RECIPE_STEP">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+                <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="CocktailModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserLanguage" ColumnName="UserLanguage" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CocktailModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

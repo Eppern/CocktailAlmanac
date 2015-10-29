@@ -1,0 +1,91 @@
+﻿@using CocktailAlmanac.Helpers
+@model CocktailAlmanac.Models.INGREDIENT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>INGREDIENT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateSubmitted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateSubmitted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlcoholPercent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlcoholPercent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImageURL)" alt="Image" width=100 height=50 />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers1.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers1.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MEASUREMENT_UNIT.ShortName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MEASUREMENT_UNIT.ShortName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("| Edit", "Edit", new { id = Model.IngredientId }).If(User.IsInRole("Mod"))
+</p>
