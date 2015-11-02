@@ -27,12 +27,27 @@ namespace CocktailAlmanac.Models
         public int IngredientId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        [Display(Name = "Date Submitted")]
         public System.DateTime DateSubmitted { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        [Display(Name = "Date Modified")]
         public Nullable<System.DateTime> DateModified { get; set; }
+
+        [Display(Name = "Submitted By")]
         public string SubmittedBy { get; set; }
+
+        [Display(Name = "Modified By")]
         public string ModifiedBy { get; set; }
+
+        [Display(Name = "ABV")]
         public double AlcoholPercent { get; set; }
+
+        [Display(Name = "Default Measurement Unit")]
         public int MeasurementUnitId { get; set; }
+
         [Display(Name = "Image")]
         public string ImageURL { get; set; }
     

@@ -1,0 +1,46 @@
+﻿@using CocktailAlmanac.Helpers
+@model IEnumerable<CocktailAlmanac.Models.ALLERGEN>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LongName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LongName)
+        </td>
+        <td>
+            <img src="@Url.Content(item.ImageURL)" alt="Image" width=100 height=50 />
+        </td>
+        <td>
+            @Html.ActionLink("Edit |", "Edit", new { id = item.AllergenId }).If(User.IsInRole("Mod"))
+            @Html.ActionLink("Details", "Details", new { id = item.AllergenId })
+            @Html.ActionLink("| Delete", "Delete", new { id = item.AllergenId }).If(User.IsInRole("Mod"))
+        </td>
+    </tr>
+}
+
+</table>

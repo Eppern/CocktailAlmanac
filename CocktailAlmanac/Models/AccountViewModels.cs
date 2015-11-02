@@ -13,7 +13,7 @@ namespace CocktailAlmanac.Models
         public string Email { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         [Display(Name = "Geburtsdatum")]
         public DateTime DOB { get; set; }
     }

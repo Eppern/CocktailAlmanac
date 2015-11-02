@@ -1,0 +1,99 @@
+﻿@model CocktailViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>RECIPE</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Recipe.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Recipe.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Recipe.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Recipe.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Recipe.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Recipe.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Recipe.Category, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Category", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Recipe.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Recipe.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Recipe.ImageURL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Recipe.ImageURL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ingredients, htmlAttributes: new { @class = "control-label col-md-2" })
+            <button id="addIngredient" type="button">Add</button>
+            <table id="selectedIngredientsTable">
+                @for (int i = 0; i <= 5; i++) {
+                    <tr>
+                        <td>
+                            <div class="col-md-10 recipe-ingredient">
+                                @Html.DropDownListFor(model => model.SelectedIngredients[i], Model.Ingredients, "-Please select-", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SelectedIngredients[i], "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RecipeSteps, htmlAttributes: new { @class = "control-label col-md-2" })
+            <button id="addIngredient" type="button">Add</button>
+            <table id="selectedIngredientsTable">
+                @for (int i = 0; i < Model.RecipeSteps.Count; i++) {
+                    <tr>
+                        <td>
+                            <div class="col-md-10 recipe-ingredient">
+                                @Html.TextAreaFor(model => model.RecipeSteps[i], new { htmlAttributes = new { @class = "form-control", @placeholder = "test" } })
+                                @Html.ValidationMessageFor(model => model.SelectedIngredients[i], "", new { @class = "text-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
