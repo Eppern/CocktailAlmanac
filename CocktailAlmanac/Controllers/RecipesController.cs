@@ -65,14 +65,16 @@ namespace CocktailAlmanac.Controllers
                 model.Recipe.SubmittedDate = DateTime.Now;
                 model.Recipe.ModifiedDate = model.Recipe.SubmittedDate;
                 db.RECIPE.Add(model.Recipe);
+                db.SaveChanges();
+
+                var recipeId = model.Recipe.RecipeId;
 
                 //recipe step
                 foreach(string step in model.RecipeSteps) {
                     RECIPE_STEP recStep = new RECIPE_STEP() {
                         Amount = 1,
                         Description = step.ToString(),
-                        IngredientId = 6,
-                        RecipeId = 1,
+                        RecipeId = recipeId,
                     };
                 }
 
