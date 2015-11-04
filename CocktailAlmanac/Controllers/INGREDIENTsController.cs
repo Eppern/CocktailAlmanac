@@ -10,23 +10,29 @@ using CocktailAlmanac.Models;
 using Microsoft.AspNet.Identity;
 using CocktailAlmanac.Helpers;
 
-namespace CocktailAlmanac.Controllers {
-    public class INGREDIENTsController : Controller {
+namespace CocktailAlmanac.Controllers
+{
+    public class INGREDIENTsController : Controller
+    {
         private CocktailEntities1 db = new CocktailEntities1();
 
         // GET: INGREDIENTs
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             var iNGREDIENT = db.INGREDIENT.Include(i => i.AspNetUsers).Include(i => i.AspNetUsers1).Include(i => i.MEASUREMENT_UNIT);
             return View(iNGREDIENT.ToList());
         }
 
         // GET: INGREDIENTs/Details/5
-        public ActionResult Details(int? id) {
-            if (id == null) {
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             INGREDIENT iNGREDIENT = db.INGREDIENT.Find(id);
-            if (iNGREDIENT == null) {
+            if (iNGREDIENT == null)
+            {
                 return HttpNotFound();
             }
             return View(iNGREDIENT);
@@ -34,8 +40,9 @@ namespace CocktailAlmanac.Controllers {
 
         // GET: INGREDIENTs/Create
         [Authorize(Roles = "Mod")]
-        public ActionResult Create() {
-
+        public ActionResult Create()
+        {
+            
             ViewBag.MeasurementUnitId = new SelectList(db.MEASUREMENT_UNIT, "MeasurementUnitId", "ShortName");
             return View();
         }
@@ -46,13 +53,15 @@ namespace CocktailAlmanac.Controllers {
         [HttpPost]
         [Authorize(Roles = "Mod")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IngredientId,Name,Description,DateSubmitted,DateModified,SubmittedBy,ModifiedBy,AlcoholPercent,MeasurementUnitId,ImageURL")] INGREDIENT iNGREDIENT) {
+        public ActionResult Create([Bind(Include = "IngredientId,Name,Description,DateSubmitted,DateModified,SubmittedBy,ModifiedBy,AlcoholPercent,MeasurementUnitId,ImageURL")] INGREDIENT iNGREDIENT)
+        {
 
             iNGREDIENT.ModifiedBy = User.Identity.GetUserId().ToString();
             iNGREDIENT.SubmittedBy = iNGREDIENT.ModifiedBy;
             iNGREDIENT.DateSubmitted = DateTime.Now;
             iNGREDIENT.DateModified = DateTime.Now;
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 db.INGREDIENT.Add(iNGREDIENT);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -68,15 +77,19 @@ namespace CocktailAlmanac.Controllers {
 
         // GET: INGREDIENTs/Edit/5
         [Authorize(Roles = "Mod")]
-        public ActionResult Edit(int? id) {
-            if (id == null) {
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             INGREDIENT iNGREDIENT = db.INGREDIENT.Find(id);
-            if (iNGREDIENT == null) {
+            if (iNGREDIENT == null)
+            {
                 return HttpNotFound();
             }
-            ViewBag.IngredientId = id;
+            ViewBag.ModifiedBy = UserHelpers.GetCurrentUserId();
+            ViewBag.DateModified = DateTime.Now;
             ViewBag.MeasurementUnitId = new SelectList(db.MEASUREMENT_UNIT, "MeasurementUnitId", "ShortName", iNGREDIENT.MeasurementUnitId);
             return View(iNGREDIENT);
         }
@@ -87,13 +100,11 @@ namespace CocktailAlmanac.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Mod")]
-        public ActionResult Edit([Bind(Include = "IngredientId,Name,Description,AlcoholPercent,MeasurementUnitId,ImageURL")] INGREDIENT iNGREDIENT) {
-            if (ModelState.IsValid) {
-                INGREDIENT currentIngredient = db.INGREDIENT.Find(iNGREDIENT.IngredientId);
-                currentIngredient = ControllerHelpers.UpdateEntity(currentIngredient, iNGREDIENT, ModelState.Keys.ToList());
-                currentIngredient.ModifiedBy = User.Identity.GetUserId();
-                currentIngredient.DateModified = DateTime.Now;
-                db.Entry(currentIngredient).State = EntityState.Modified;
+        public ActionResult Edit([Bind(Include = "IngredientId,Name,Description,DateSubmitted,DateModified,SubmittedBy,ModifiedBy,AlcoholPercent,MeasurementUnitId,ImageURL")] INGREDIENT iNGREDIENT)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(iNGREDIENT).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -104,12 +115,15 @@ namespace CocktailAlmanac.Controllers {
 
         // GET: INGREDIENTs/Delete/5
         [Authorize(Roles = "Mod")]
-        public ActionResult Delete(int? id) {
-            if (id == null) {
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             INGREDIENT iNGREDIENT = db.INGREDIENT.Find(id);
-            if (iNGREDIENT == null) {
+            if (iNGREDIENT == null)
+            {
                 return HttpNotFound();
             }
             return View(iNGREDIENT);
@@ -119,10 +133,12 @@ namespace CocktailAlmanac.Controllers {
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Mod")]
-        public ActionResult DeleteConfirmed(int id) {
+        public ActionResult DeleteConfirmed(int id)
+        {
             INGREDIENT iNGREDIENT = db.INGREDIENT.Find(id);
             bool isInUse = db.RECIPE_INGREDIENT.Where(i => i.IngredientId == id).Count() > 0;
-            if (!isInUse) {
+            if (!isInUse)
+            {
                 db.INGREDIENT.Remove(iNGREDIENT);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -131,8 +147,10 @@ namespace CocktailAlmanac.Controllers {
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing) {
-            if (disposing) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
                 db.Dispose();
             }
             base.Dispose(disposing);

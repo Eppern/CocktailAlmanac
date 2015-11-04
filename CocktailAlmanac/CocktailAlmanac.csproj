@@ -171,15 +171,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AllergensController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\INGREDIENTsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ControllerHelpers.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\UserHelpers.cs" />
     <Compile Include="Migrations\201510150705266_InitialCreate.cs" />
@@ -222,7 +219,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cocktail.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\CocktailViewModel.cs" />
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Cocktail.tt</DependentUpon>
     </Compile>
@@ -345,16 +341,6 @@
     <Content Include="Views\INGREDIENTs\Details.cshtml" />
     <Content Include="Views\INGREDIENTs\Edit.cshtml" />
     <Content Include="Views\INGREDIENTs\Index.cshtml" />
-    <Content Include="Views\Allergens\Create.cshtml" />
-    <Content Include="Views\Allergens\Delete.cshtml" />
-    <Content Include="Views\Allergens\Details.cshtml" />
-    <Content Include="Views\Allergens\Edit.cshtml" />
-    <Content Include="Views\Allergens\Index.cshtml" />
-    <Content Include="Views\Recipes\Create.cshtml" />
-    <Content Include="Views\Recipes\Delete.cshtml" />
-    <Content Include="Views\Recipes\Details.cshtml" />
-    <Content Include="Views\Recipes\Edit.cshtml" />
-    <Content Include="Views\Recipes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -393,7 +379,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49351</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
+          <IISUrl>http://localhost:49351/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

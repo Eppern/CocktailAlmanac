@@ -11,8 +11,7 @@ namespace CocktailAlmanac.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ALLERGEN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,14 +21,8 @@ namespace CocktailAlmanac.Models
         }
     
         public int AllergenId { get; set; }
-
-        [Display(Name = "Short Name")]
         public string ShortName { get; set; }
-
-        [Display(Name = "Full Name")]
         public string LongName { get; set; }
-
-        [Display(Name = "Image")]
         public string ImageURL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

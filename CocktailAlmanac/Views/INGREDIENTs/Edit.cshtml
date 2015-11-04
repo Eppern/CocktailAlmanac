@@ -34,6 +34,38 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.DateSubmitted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateSubmitted, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateSubmitted, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateModified, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateModified, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateModified, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubmittedBy, "SubmittedBy", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SubmittedBy", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubmittedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ModifiedBy, "ModifiedBy", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ModifiedBy", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ModifiedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.AlcoholPercent, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AlcoholPercent, new { htmlAttributes = new { @class = "form-control" } })

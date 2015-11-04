@@ -16,7 +16,7 @@ namespace CocktailAlmanac.Helpers
     {
         public static string GetCurrentUserId()
         {
-            return HttpContext.Current.User.Identity.GetUserId();
+            return HttpContext.Current.User.Identity.ToString();
         }
 
         public static void CreateAspNetRole(string roleName)
