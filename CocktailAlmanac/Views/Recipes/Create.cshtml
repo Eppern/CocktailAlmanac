@@ -50,7 +50,6 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Ingredients, htmlAttributes: new { @class = "control-label col-md-2" })
-            <button id="addIngredient" type="button">Add</button>
             <table id="selectedIngredientsTable">
                 @for (int i = 0; i <= 5; i++) {
                     <tr>
@@ -67,7 +66,6 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.RecipeSteps, htmlAttributes: new { @class = "control-label col-md-2" })
-            <button id="addIngredient" type="button">Add</button>
             <table id="selectedIngredientsTable">
                 @for (int i = 0; i < Model.RecipeSteps.Count; i++) {
                     <tr>

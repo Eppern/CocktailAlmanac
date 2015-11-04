@@ -70,22 +70,26 @@ namespace CocktailAlmanac.Controllers
                 var recipeId = model.Recipe.RecipeId;
 
                 //recipe step
-                foreach(string step in model.RecipeSteps) {
+                int stepCount = 1;
+                foreach(string step in model.RecipeSteps.Where(s => s != null).Where(s => s != "")) {
                     RECIPE_STEP recStep = new RECIPE_STEP() {
-                        Amount = 1,
                         Description = step.ToString(),
                         RecipeId = recipeId,
+                        StepNr = stepCount
                     };
+                    stepCount++;
+                    db.RECIPE_STEP.Add(recStep);
                 }
 
 
                 //recipe ingredients
-                foreach (int? ing in model.SelectedIngredients) {
+                foreach (int? ing in model.SelectedIngredients.Where(i => i != null)) {
                     RECIPE_INGREDIENT recIng = new RECIPE_INGREDIENT() {
                         Amount = 1,
                         IngredientId = (int)ing,
-                        RecipeId = 1
+                        RecipeId = recipeId
                     };
+                    db.RECIPE_INGREDIENT.Add(recIng);
                 }
 
                 db.SaveChanges();
