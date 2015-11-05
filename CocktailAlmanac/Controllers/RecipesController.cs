@@ -44,9 +44,7 @@ namespace CocktailAlmanac.Controllers
             model.SelectedIngredients = new List<int?>();
             model.RecipeSteps = new List<string>() { null, null, null, null, null, };
             model.Ingredients = new SelectList(db.INGREDIENT, "IngredientId", "Name");
-            ViewBag.Category = new SelectList(db.RECIPE_CATEGORY, "Recipe_CategoryId", "Name");
-            ViewBag.ModifiedBy = new SelectList(db.AspNetUsers, "Id", "FirstName");
-            ViewBag.SubmittedBy = new SelectList(db.AspNetUsers, "Id", "FirstName");
+            model.Categories = new SelectList(db.RECIPE_CATEGORY, "Recipe_CategoryId", "Name");
             return View(model);
         }
 
@@ -55,7 +53,7 @@ namespace CocktailAlmanac.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Recipe,SelectedIngredients,RecipeSteps,Allergens,NutritionalInfo")] CocktailViewModel model)
+        public ActionResult Create([Bind(Include = "Recipe,SelectedIngredients,RecipeSteps,Allergens,NutritionalInfo,ViewBag")] CocktailViewModel model)
         {
             if (ModelState.IsValid)
             {

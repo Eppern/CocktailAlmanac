@@ -14,6 +14,7 @@ namespace CocktailAlmanac.Models {
         [Display(Prompt = "Recipe Step")]
         public List<string> RecipeSteps { get; set; }
         public SelectList Ingredients { get; set; }
+        public SelectList Categories { get; set; }
         public List<ALLERGEN> Allergens { get; set; }
         public List<NUTRITIONAL_INFO> NutritionalInfo { get; set; }
     }
