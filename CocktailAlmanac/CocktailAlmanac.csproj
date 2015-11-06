@@ -180,6 +180,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ControllerHelpers.cs" />
+    <Compile Include="Helpers\EfHelpers.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\UserHelpers.cs" />
     <Compile Include="Migrations\201510150705266_InitialCreate.cs" />

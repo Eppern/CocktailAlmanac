@@ -69,8 +69,10 @@ namespace CocktailAlmanac.Controllers
 
                 //recipe step
                 int stepCount = 1;
-                foreach(string step in model.RecipeSteps.Where(s => s != null).Where(s => s != "")) {
-                    RECIPE_STEP recStep = new RECIPE_STEP() {
+                foreach (string step in model.RecipeSteps.Where(s => s != null).Where(s => s != ""))
+                {
+                    RECIPE_STEP recStep = new RECIPE_STEP()
+                    {
                         Description = step.ToString(),
                         RecipeId = recipeId,
                         StepNr = stepCount
@@ -81,8 +83,10 @@ namespace CocktailAlmanac.Controllers
 
 
                 //recipe ingredients
-                foreach (int? ing in model.SelectedIngredients.Where(i => i != null)) {
-                    RECIPE_INGREDIENT recIng = new RECIPE_INGREDIENT() {
+                foreach (int? ing in model.SelectedIngredients.Where(i => i != null))
+                {
+                    RECIPE_INGREDIENT recIng = new RECIPE_INGREDIENT()
+                    {
                         Amount = 1,
                         IngredientId = (int)ing,
                         RecipeId = recipeId
