@@ -16,14 +16,14 @@ namespace CocktailAlmanac.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Was ist Cocktail Almanac?";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Eppern-Software";
 
             return View();
         }
