@@ -109,7 +109,7 @@
             <PropertyRef Name="IngredientId" />
             <PropertyRef Name="Nutritional_InfoId" />
           </Key>
-          <Property Name="Amount" Type="bit" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
           <Property Name="IngredientId" Type="int" Nullable="false" />
           <Property Name="Nutritional_InfoId" Type="int" Nullable="false" />
         </EntityType>
@@ -575,7 +575,7 @@
             <PropertyRef Name="IngredientId" />
             <PropertyRef Name="Nutritional_InfoId" />
           </Key>
-          <Property Name="Amount" Type="Boolean" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="IngredientId" Type="Int32" Nullable="false" />
           <Property Name="Nutritional_InfoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="INGREDIENT" Relationship="Self.FK_INGREDIENT_NUTRITIONAL_INFO_INGREDIENT" FromRole="INGREDIENT_NUTRITIONAL_INFO" ToRole="INGREDIENT" />

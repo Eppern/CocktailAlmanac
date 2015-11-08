@@ -173,7 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AllergensController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\INGREDIENTsController.cs" />
+    <Compile Include="Controllers\IngredientsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,6 +223,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cocktail.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\IngredientViewModel.cs" />
     <Compile Include="Models\CocktailViewModel.cs" />
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Cocktail.tt</DependentUpon>

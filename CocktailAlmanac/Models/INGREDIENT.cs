@@ -20,7 +20,6 @@ namespace CocktailAlmanac.Models
             this.INGREDIENT_ALLERGEN = new HashSet<INGREDIENT_ALLERGEN>();
             this.INGREDIENT_NUTRITIONAL_INFO = new HashSet<INGREDIENT_NUTRITIONAL_INFO>();
             this.RECIPE_INGREDIENT = new HashSet<RECIPE_INGREDIENT>();
-            this.RECIPE_STEP = new HashSet<RECIPE_STEP>();
         }
     
         public int IngredientId { get; set; }
@@ -41,8 +40,6 @@ namespace CocktailAlmanac.Models
         public virtual ICollection<INGREDIENT_NUTRITIONAL_INFO> INGREDIENT_NUTRITIONAL_INFO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RECIPE_INGREDIENT> RECIPE_INGREDIENT { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RECIPE_STEP> RECIPE_STEP { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual AspNetUsers AspNetUsers1 { get; set; }
     }

@@ -17,7 +17,7 @@ namespace CocktailAlmanac.Models
         public string Description { get; set; }
         public int RecipeId { get; set; }
         public int StepNr { get; set; }
-   
+    
         public virtual RECIPE RECIPE { get; set; }
     }
 }

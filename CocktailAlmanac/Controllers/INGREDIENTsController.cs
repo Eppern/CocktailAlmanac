@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity;
 using CocktailAlmanac.Helpers;
 
 namespace CocktailAlmanac.Controllers {
-    public class INGREDIENTsController : Controller {
+    public class IngredientsController : Controller {
         private CocktailEntities1 db = new CocktailEntities1();
 
         // GET: INGREDIENTs
@@ -33,11 +33,23 @@ namespace CocktailAlmanac.Controllers {
         }
 
         // GET: INGREDIENTs/Create
-        [Authorize(Roles = "Mod")]
+        [Authorize(Roles = "User")]
         public ActionResult Create() {
+            IngredientViewModel model = new IngredientViewModel();
+            model.Allergens = db.ALLERGEN.ToList();
+            model.NutritionalInfos = db.NUTRITIONAL_INFO.ToList();
+            model.SelectedAllergens = new List<bool>();
+            for(int i = 0; i < model.Allergens.Count(); i++) {
+                model.SelectedAllergens.Add(false);
+            }
+            model.IngredientNutritionalInfos = new List<INGREDIENT_NUTRITIONAL_INFO>();
 
-            ViewBag.MeasurementUnitId = new SelectList(db.MEASUREMENT_UNIT, "MeasurementUnitId", "ShortName");
-            return View();
+            for (int i = 0; i < model.NutritionalInfos.Count(); i++) {
+                model.IngredientNutritionalInfos.Add(new INGREDIENT_NUTRITIONAL_INFO());
+            }
+
+            model.MeasurementUnits = new SelectList(db.MEASUREMENT_UNIT, "MeasurementUnitId", "ShortName");
+            return View(model);
         }
 
         // POST: INGREDIENTs/Create
@@ -46,24 +58,47 @@ namespace CocktailAlmanac.Controllers {
         [HttpPost]
         [Authorize(Roles = "Mod")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IngredientId,Name,Description,DateSubmitted,DateModified,SubmittedBy,ModifiedBy,AlcoholPercent,MeasurementUnitId,ImageURL")] INGREDIENT iNGREDIENT) {
+        public ActionResult Create([Bind(Include = "Ingredient, SelectedAllergens, Allergens, MeasurementUnitId, IngredientNutritionalInfos")] IngredientViewModel model) {
 
-            iNGREDIENT.ModifiedBy = User.Identity.GetUserId().ToString();
-            iNGREDIENT.SubmittedBy = iNGREDIENT.ModifiedBy;
-            iNGREDIENT.DateSubmitted = DateTime.Now;
-            iNGREDIENT.DateModified = DateTime.Now;
+            model.Ingredient.ModifiedBy = User.Identity.GetUserId().ToString();
+            model.Ingredient.SubmittedBy = model.Ingredient.ModifiedBy;
+            model.Ingredient.DateSubmitted = DateTime.Now;
+            model.Ingredient.DateModified = DateTime.Now;
             if (ModelState.IsValid) {
-                db.INGREDIENT.Add(iNGREDIENT);
+                db.INGREDIENT.Add(model.Ingredient);
                 db.SaveChanges();
+
+                int id = model.Ingredient.IngredientId;
+
+                #region allergens
+                model.Allergens = db.ALLERGEN.ToList();
+                for (int i = 0; i < model.Allergens.Count(); i++) {
+                    INGREDIENT_ALLERGEN ia = new INGREDIENT_ALLERGEN() {
+                        Present = model.SelectedAllergens[i],
+                        IngredientId = id,
+                        AllergenId = model.Allergens[i].AllergenId
+                    };
+                    db.INGREDIENT_ALLERGEN.Add(ia);
+                }
+                #endregion
+
+                #region nutritional info
+                model.NutritionalInfos = db.NUTRITIONAL_INFO.ToList();
+                
+                for (int i = 0; i < model.NutritionalInfos.Count(); i++) {
+                    model.IngredientNutritionalInfos[i].INGREDIENT = model.Ingredient;
+                    model.IngredientNutritionalInfos[i].NUTRITIONAL_INFO = model.NutritionalInfos[i];
+                    model.Ingredient.INGREDIENT_NUTRITIONAL_INFO.Add(model.IngredientNutritionalInfos[i]);
+                }
+
+                #endregion
+
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-
-            ViewBag.ModifiedBy = UserHelpers.GetCurrentUserId();
-            ViewBag.SubmittedBy = ViewBag.ModifiedBy;
-            ViewBag.DateSubmitted = DateTime.Now;
-            ViewBag.DateModified = DateTime.Now;
-            ViewBag.MeasurementUnitId = new SelectList(db.MEASUREMENT_UNIT, "MeasurementUnitId", "ShortName", iNGREDIENT.MeasurementUnitId);
-            return View(iNGREDIENT);
+            model.MeasurementUnits = new SelectList(db.MEASUREMENT_UNIT, "MeasurementUnitId", "ShortName", model.Ingredient.MeasurementUnitId);
+            return View(model);
         }
 
         // GET: INGREDIENTs/Edit/5

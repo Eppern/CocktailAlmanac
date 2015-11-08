@@ -14,7 +14,7 @@ namespace CocktailAlmanac.Models
     
     public partial class INGREDIENT_NUTRITIONAL_INFO
     {
-        public bool Amount { get; set; }
+        public double Amount { get; set; }
         public int IngredientId { get; set; }
         public int Nutritional_InfoId { get; set; }
     
