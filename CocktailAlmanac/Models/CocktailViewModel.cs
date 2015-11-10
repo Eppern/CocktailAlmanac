@@ -17,5 +17,6 @@ namespace CocktailAlmanac.Models {
         public SelectList Categories { get; set; }
         public List<ALLERGEN> Allergens { get; set; }
         public List<NUTRITIONAL_INFO> NutritionalInfo { get; set; }
+        public List<INGREDIENT_NUTRITIONAL_INFO> IngNutInfo { get; set; }
     }
 }

@@ -6,16 +6,15 @@
 <div class="jumbotron">
     <h1>Cocktail Almanac</h1>
     <p class="lead">The Best Cocktail Recipe Website On THE INTERNET</p>
-    <p>
-        <form action="#">
-            <input type="search" list="Vögel" />
-            <datalist id=@Model.Recipes>
-            </datalist>
-            <input type="submit">
-        </form>
-    </p>
-
-</select>
+    @using (Html.BeginForm("SearchRecipe", "Recipes")) {
+        <input type="search" name="search" list=@Model.Recipes autocomplete="off" id="RecipeId"/>
+        <datalist id=@Model.Recipes>
+            @foreach (var item in Model.Recipes) {
+                <option value=@item.Name></option>
+            }
+        </datalist>
+        <input type="submit">
+    }
 </div>
 
 <div class="row">

@@ -29,15 +29,32 @@ namespace CocktailAlmanac.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RECIPE rECIPE = db.RECIPE.Find(id);
-            if (rECIPE == null)
+            RECIPE recipe = db.RECIPE.Find(id);
+            if (recipe == null)
             {
                 return HttpNotFound();
             }
-            return View(rECIPE);
+
+            CocktailViewModel model = GenerateViewModel(recipe);
+            return View(model);
+        }
+
+        // GET: Recipes/Details/5
+        public ActionResult SearchRecipe(string search) {
+            if (string.IsNullOrEmpty(search)) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RECIPE recipe = db.RECIPE.Where(r => r.Name.Contains(search)).FirstOrDefault();
+            if (recipe == null) {
+                return HttpNotFound();
+            }
+
+            CocktailViewModel model = GenerateViewModel(recipe);
+            return View("Details", model);
         }
 
         // GET: Recipes/Create
+        [Authorize(Roles = "User")]
         public ActionResult Create()
         {
             CocktailViewModel model = new CocktailViewModel();
@@ -52,6 +69,7 @@ namespace CocktailAlmanac.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Recipe,SelectedIngredients,RecipeSteps,Allergens,NutritionalInfo,ViewBag")] CocktailViewModel model)
         {
@@ -175,5 +193,29 @@ namespace CocktailAlmanac.Controllers
             }
             base.Dispose(disposing);
         }
+
+        private CocktailViewModel GenerateViewModel(RECIPE recipe) {
+            List<ALLERGEN> allergens = new List<ALLERGEN>();
+            List<INGREDIENT_NUTRITIONAL_INFO> nutInfo = new List<INGREDIENT_NUTRITIONAL_INFO>();
+            List<RECIPE_INGREDIENT> ingredients = recipe.RECIPE_INGREDIENT.ToList();
+
+            foreach (RECIPE_INGREDIENT item in ingredients) {
+                var ingAllergen = item.INGREDIENT.INGREDIENT_ALLERGEN;
+                foreach (var ing in ingAllergen.Where(i => i.Present == true)) {
+                    allergens.Add(ing.ALLERGEN);
+                }
+                nutInfo.AddRange(item.INGREDIENT.INGREDIENT_NUTRITIONAL_INFO);
+            }
+
+            //TODO: Gather together the nutinfos and add them up rather than having duplicates
+
+            CocktailViewModel model = new CocktailViewModel() {
+                Recipe = recipe,
+                Allergens = allergens,
+                IngNutInfo = nutInfo
+            };
+
+            return model;
+        } 
     }
 }

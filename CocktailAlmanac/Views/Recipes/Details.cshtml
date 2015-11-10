@@ -1,22 +1,23 @@
-﻿@model CocktailAlmanac.Models.RECIPE
+﻿@model CocktailViewModel
+@using CocktailAlmanac.Helpers
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+<h2>@Html.DisplayFor(model => model.Recipe.Name)</h2>
 
 <div>
-    <h4>Category: @Html.DisplayFor(model => model.RECIPE_CATEGORY.Name)</h4>
+    <h4>Category: @Html.DisplayFor(model => model.Recipe.RECIPE_CATEGORY.Name)</h4>
     <hr />
 
-    <img src="@Url.Content(Model.ImageURL)" alt="Image" width=360 />
+    <img src="@Url.Content(Model.Recipe.ImageURL)" alt="Image" width=360 />
 
-    <h5>@Html.DisplayFor(model => model.Description)</h5>
+    <h5>@Html.DisplayFor(model => model.Recipe.Description)</h5>
 
     <h3>Ingredients</h3>
     <ul>
-        @foreach (var item in Model.RECIPE_INGREDIENT)
+        @foreach (var item in Model.Recipe.RECIPE_INGREDIENT)
         {
             <li>@Html.DisplayFor(modelItem => item.INGREDIENT.Name)</li>
         }
@@ -24,13 +25,27 @@
 
     <h3>Steps</h3>
     <ol>
-        @foreach (var item in Model.RECIPE_STEP)
+        @foreach (var item in Model.Recipe.RECIPE_STEP)
         {
-            <li>@Html.DisplayFor(modelItem => item.Description)</li>
+            <li>@Html.DisplayFor(modelItem => item.Description).If(item.Description != null || item.Description != "")</li>
         }
     </ol>
+
+    <h3>Allergens</h3>
+    @foreach (var item in Model.Allergens) {
+        <span class="ingredient-allergen">@Html.ActionLink(item.ShortName, "Details", "Allergens",
+                                         new { id = item.AllergenId }, new { style = "text-decoration:none;" })</span>
+    }
+
+    <h3>Nutritional Info</h3>
+    <ul>
+        @foreach (var item in Model.IngNutInfo) {
+            <li>@item.NUTRITIONAL_INFO.ShortName | @item.Amount (g)</li>
+        }
+    </ul>
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Recipe.RecipeId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
