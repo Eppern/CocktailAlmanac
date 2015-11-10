@@ -1,23 +1,15 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>Cocktail Almanac</h1>
-    <p class="lead">PlaceholderPlaceholderPlaceholderPlaceholderPlaceholderPlaceholderPlaceholderPlaceholder</p>
+    <p class="lead">The Best Cocktail Recipe Website On THE INTERNET</p>
     <p>
         <form action="#">
             <input type="search" list="Vögel" />
-            <datalist id="Vögel">
-                <option value="Amsel">
-                <option value="Buntspecht">
-                <option value="Drossel">
-                <option value="Eisvogel">
-                <option value="Fink">
-                <option value="Graugans">
-                <option value="Meise">
-                <option value="Spatz">
-                <option value="Specht">
+            <datalist id=@Model.Recipes>
             </datalist>
             <input type="submit">
         </form>
@@ -30,30 +22,21 @@
     <div class="col-md-4">
         <h2>Cocktail of the Day</h2>
         <p>
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
+            @Model.RecipeOfTheDay.Name
         </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">zum CotD &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>Cocktail of the Month</h2>
         <p>
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
+            @Model.RecipeOfTheMonth.Name
         </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">zum CotM &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>Best rated Cocktail ever</h2>
         <p>
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
-            PlaceholderPlaceholderPlaceholderPlaceholder
+            @Model.BestRated.Name
         </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">zum BrCe &raquo;</a></p>
     </div>

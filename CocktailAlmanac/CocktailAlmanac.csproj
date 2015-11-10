@@ -223,6 +223,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cocktail.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IngredientViewModel.cs" />
     <Compile Include="Models\CocktailViewModel.cs" />
     <Compile Include="Models\C__MigrationHistory.cs">
