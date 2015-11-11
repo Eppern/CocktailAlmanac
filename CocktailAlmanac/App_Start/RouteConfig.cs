@@ -14,15 +14,15 @@ namespace CocktailAlmanac
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                name: "RecipeSearch",
+                url: "Recipes/SearchRecipe/{search}",
+                defaults: new { controller = "Recipes", action = "Index", search = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "RecipeSearch",
-                url: "{controller}/{action}/{search}",
-                defaults: new { controller = "Recipes", action = "SearchRecipe", search = "" }
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

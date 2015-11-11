@@ -211,11 +211,21 @@ namespace CocktailAlmanac.Controllers
 
             CocktailViewModel model = new CocktailViewModel() {
                 Recipe = recipe,
-                Allergens = allergens,
+                Allergens = allergens.Distinct().ToList(),
                 IngNutInfo = nutInfo
             };
 
             return model;
+        }
+
+        /// <summary>
+        /// Cumulates the INGREDIENT_NUTRITIONAL_INFO values
+        /// </summary>
+        /// <param name="nutInfo"></param>
+        /// <returns></returns>
+        private List<INGREDIENT_NUTRITIONAL_INFO> NutritionLabel(List<INGREDIENT_NUTRITIONAL_INFO> nutInfo)
+        {
+            return nutInfo.GroupBy(n => n.Nutritional_InfoId).Sum()
         } 
     }
 }

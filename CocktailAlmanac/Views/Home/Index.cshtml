@@ -7,10 +7,10 @@
     <h1>Cocktail Almanac</h1>
     <p class="lead">The Best Cocktail Recipe Website On THE INTERNET</p>
     @using (Html.BeginForm("SearchRecipe", "Recipes")) {
-        <input type="search" name="search" list=@Model.Recipes autocomplete="off" id="RecipeId"/>
+        <input type="search" name="search" list=@Model.Recipes autocomplete="off" id="RecipeId" placeholder="Type a cocktail name..."/>
         <datalist id=@Model.Recipes>
             @foreach (var item in Model.Recipes) {
-                <option value=@item.Name></option>
+                <option value="@item.Name" data-value="@item.Name"></option>
             }
         </datalist>
         <input type="submit">
