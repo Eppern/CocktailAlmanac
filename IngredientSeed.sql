@@ -52,30 +52,30 @@ set @gin = (select Top 1 IngredientId from INGREDIENT where Name like '%Gin%')
 Declare @cream int
 set @cream = (select Top 1 IngredientId from INGREDIENT where Name like '%Crea%')
 
---INSERT INTO INGREDIENT_ALLERGEN VALUES
---(1, @baileys, @dairy),
---(1, @kahlua, @dairy)
+INSERT INTO INGREDIENT_ALLERGEN VALUES
+(1, @baileys, @dairy),
+(1, @kahlua, @dairy)
 
---INSERT INTO INGREDIENT_ALLERGEN VALUES
---(1, @whisky, @gluten),
---(1, @gin, @gluten)
+INSERT INTO INGREDIENT_ALLERGEN VALUES
+(1, @whisky, @gluten),
+(1, @gin, @gluten)
 
 /*Add Nutritional info to the ingredients*/
---INSERT INTO INGREDIENT_NUTRITIONAL_INFO VALUES
---(327, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Bre%')),
---(3, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Eiw%')),
---(25, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Kohl%')),
---(13, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Fet%')),
---(0.08, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Nat%')),
---(0, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Balla%'))
+INSERT INTO INGREDIENT_NUTRITIONAL_INFO VALUES
+(327, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Bre%')),
+(3, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Eiw%')),
+(25, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Kohl%')),
+(13, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Fet%')),
+(0.08, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Nat%')),
+(0, @baileys, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Balla%'))
 
---INSERT INTO INGREDIENT_NUTRITIONAL_INFO VALUES
---(53, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Bre%')),
---(0, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Eiw%')),
---(11.3, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Kohl%')),
---(0, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Fet%')),
---(0, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Nat%')),
---(0, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Balla%'))
+INSERT INTO INGREDIENT_NUTRITIONAL_INFO VALUES
+(53, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Bre%')),
+(0, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Eiw%')),
+(11.3, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Kohl%')),
+(0, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Fet%')),
+(0, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Nat%')),
+(0, @kahlua, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Balla%'))
 
 INSERT INTO INGREDIENT_NUTRITIONAL_INFO VALUES
 (345, @cream, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Bre%')),
@@ -86,3 +86,5 @@ INSERT INTO INGREDIENT_NUTRITIONAL_INFO VALUES
 (0, @cream, (select Nutritional_InfoId from NUTRITIONAL_INFO where ShortName like 'Balla%'))
 
 GO
+
+select * from RECIPE
