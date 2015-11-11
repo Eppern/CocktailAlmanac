@@ -1,0 +1,4 @@
+todo 11.11.2015
+
+Don't let ingredients/index run over the black line. Implement scroll or remove black line.
+Implement rates and voting

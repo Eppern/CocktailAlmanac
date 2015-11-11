@@ -207,25 +207,27 @@ namespace CocktailAlmanac.Controllers
                 nutInfo.AddRange(item.INGREDIENT.INGREDIENT_NUTRITIONAL_INFO);
             }
 
-            //TODO: Gather together the nutinfos and add them up rather than having duplicates
+            NutritionLabel label = new NutritionLabel(nutInfo);
 
+            //TODO: Gather together the nutinfos and add them up rather than having duplicates
             CocktailViewModel model = new CocktailViewModel() {
                 Recipe = recipe,
                 Allergens = allergens.Distinct().ToList(),
-                IngNutInfo = nutInfo
+                NutritionLabel = label
             };
 
             return model;
         }
+    }
 
-        /// <summary>
-        /// Cumulates the INGREDIENT_NUTRITIONAL_INFO values
-        /// </summary>
-        /// <param name="nutInfo"></param>
-        /// <returns></returns>
-        private List<INGREDIENT_NUTRITIONAL_INFO> NutritionLabel(List<INGREDIENT_NUTRITIONAL_INFO> nutInfo)
-        {
-            return nutInfo.GroupBy(n => n.Nutritional_InfoId).Sum()
-        } 
+    public class NutritionLabel {
+        public List<double> Amount { get; set; }
+        public List<NUTRITIONAL_INFO> NutritionalInfo { get; set; }
+        public NutritionLabel(List<INGREDIENT_NUTRITIONAL_INFO> nutInfo) {
+            var info = nutInfo.GroupBy(n => n.Nutritional_InfoId)
+                .Select(n => new { Amount = n.Sum(x => x.Amount), Nutritional_Info = n.Select(x => x.NUTRITIONAL_INFO).FirstOrDefault() });
+            Amount = info.Select(i => i.Amount).ToList();
+            NutritionalInfo = info.Select(i => i.Nutritional_Info).ToList();
+        }
     }
 }

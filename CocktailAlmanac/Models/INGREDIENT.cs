@@ -11,7 +11,8 @@ namespace CocktailAlmanac.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class INGREDIENT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,7 +31,11 @@ namespace CocktailAlmanac.Models
         public string SubmittedBy { get; set; }
         public string ModifiedBy { get; set; }
         public double AlcoholPercent { get; set; }
+
+        [Display(Name = "Default Unit Of Measurement")]
         public int MeasurementUnitId { get; set; }
+
+        [Display(Name = "Image")]
         public string ImageURL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -16,7 +16,7 @@ namespace CocktailAlmanac
             routes.MapRoute(
                 name: "RecipeSearch",
                 url: "Recipes/SearchRecipe/{search}",
-                defaults: new { controller = "Recipes", action = "Index", search = UrlParameter.Optional }
+                defaults: new { controller = "Recipes", action = "SearchRecipe", search = UrlParameter.Optional }
             );
 
             routes.MapRoute(

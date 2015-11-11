@@ -19,7 +19,10 @@
     <ul>
         @foreach (var item in Model.Recipe.RECIPE_INGREDIENT)
         {
-            <li>@Html.DisplayFor(modelItem => item.INGREDIENT.Name)</li>
+            <li>
+                @Html.ActionLink(item.INGREDIENT.Name, "Details", "Ingredients",
+                                         new { id = item.IngredientId }, new { style = "text-decoration:none;" })
+            </li>
         }
     </ul>
 
@@ -34,18 +37,36 @@
     <h3>Allergens</h3>
     @foreach (var item in Model.Allergens) {
         <span class="ingredient-allergen">@Html.ActionLink(item.ShortName, "Details", "Allergens",
-                                         new { id = item.AllergenId }, new { style = "text-decoration:none;" })</span>
+                                         new { id = item.AllergenId }, new { style = "text-decoration:none;" }) | </span>
     }
 
     <h3>Nutritional Info</h3>
-    <ul>
-        @foreach (var item in Model.IngNutInfo) {
-            <li>@item.NUTRITIONAL_INFO.ShortName | @item.Amount (g)</li>
-        }
-    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Naehwerte</th>
+                <th>g</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.NutritionLabel.NutritionalInfo.Count(); i++) {
+                <tr>
+                    <td>
+                        @Html.ActionLink(Model.NutritionLabel.NutritionalInfo[i].ShortName, "Details", "NutritionalInfo",
+                                         new { Model.NutritionLabel.NutritionalInfo[i].Nutritional_InfoId }, new { style = "text-decoration:none;" })
+                    </td>
+                    <td>@Model.NutritionLabel.Amount[i]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Recipe.RecipeId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<br />
+<div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Recipe.RecipeId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

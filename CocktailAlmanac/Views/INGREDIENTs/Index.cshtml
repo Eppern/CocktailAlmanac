@@ -1,5 +1,5 @@
 ﻿@using CocktailAlmanac.Helpers
-@model IEnumerable<CocktailAlmanac.Models.INGREDIENT>
+@model IEnumerable<INGREDIENT>
 
 @{
     ViewBag.Title = "Index";
@@ -24,13 +24,10 @@
         <th>
             @Html.DisplayNameFor(model => model.ImageURL)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MeasurementUnitId)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.OrderBy(m => m.Name)) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -42,10 +39,7 @@
             @Html.DisplayFor(modelItem => item.AlcoholPercent)
         </td>
         <td>
-            <img src="@Url.Content(item.ImageURL)" alt="Image" width=100 height=50 />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MEASUREMENT_UNIT.ShortName)
+            <img src="@Url.Content(item.ImageURL)" alt="Image" height=100 />
         </td>
         <td>
             @Html.ActionLink("Edit |", "Edit", new { id = item.IngredientId }).If(User.IsInRole("Mod"))
