@@ -7,7 +7,7 @@
     <h1>Cocktail Almanac</h1>
     <p class="lead">The Best Cocktail Recipe Website On THE INTERNET</p>
     @using (Html.BeginForm("SearchRecipe", "Recipes")) {
-        <input type="search" name="search" list=@Model.Recipes autocomplete="off" id="RecipeId" placeholder="Type a cocktail name..."/>
+        <input type="search" name="search" list=@Model.Recipes autocomplete="off" id="RecipeId" placeholder="Search..."/>
         <datalist id=@Model.Recipes>
             @foreach (var item in Model.Recipes) {
                 <option value="@item.Name" data-value="@item.Name"></option>
@@ -18,25 +18,31 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Cocktail of the Day</h2>
-        <p>
-            @Model.RecipeOfTheDay.Name
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">zum CotD &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Cocktail of the Month</h2>
-        <p>
-            @Model.RecipeOfTheMonth.Name
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">zum CotM &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Best rated Cocktail ever</h2>
-        <p>
-            @Model.BestRated.Name
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">zum BrCe &raquo;</a></p>
-    </div>
+    <a href="@Url.Action("Details", "Recipes", new { id = @Model.RecipeOfTheDay.RecipeId })">
+        <div class="col-md-4">
+            <h2>Cocktail of the Day</h2>
+            <img src="@Url.Content(Model.RecipeOfTheDay.ImageURL)" alt="Image" width=80 />
+            <p>
+                @Model.RecipeOfTheDay.Name
+            </p>
+        </div>
+    </a>
+    <a href="@Url.Action("Details", "Recipes", new { id = @Model.RecipeOfTheMonth.RecipeId })">
+        <div class="col-md-4">
+            <h2>Cocktail of the Month</h2>
+            <img src="@Url.Content(Model.RecipeOfTheMonth.ImageURL)" alt="Image" width=80 />
+            <p>
+                @Model.RecipeOfTheMonth.Name
+            </p>
+        </div>
+    </a>
+    <a href="@Url.Action("Details", "Recipes", new { id = @Model.BestRated.RecipeId })">
+        <div class="col-md-4">
+            <h2>Top Rated</h2>
+            <img src="@Url.Content(Model.BestRated.ImageURL)" alt="Image" width=80 />
+            <p>
+                @Model.BestRated.Name
+            </p>
+        </div>
+    </a>
 </div>
