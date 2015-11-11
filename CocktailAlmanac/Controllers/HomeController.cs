@@ -15,11 +15,9 @@ namespace CocktailAlmanac.Controllers
         public ActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();
-            Random rndDay = new Random();
-            Random rndMonth = new Random();
             model.Recipes = db.RECIPE.ToList();
-            model.RecipeOfTheDay = model.Recipes.OrderBy(r => rndDay.Next()).FirstOrDefault();
-            model.RecipeOfTheMonth = model.Recipes.OrderBy(r => rndMonth.Next()).FirstOrDefault();
+            model.RecipeOfTheDay = model.Recipes.OrderByDescending(r => r.Votes).FirstOrDefault();
+            model.RecipeOfTheMonth = model.Recipes.OrderByDescending(r => r.Name).FirstOrDefault();
             model.BestRated = db.RECIPE.OrderByDescending(r => r.Rating).FirstOrDefault();
             return View(model);
         }

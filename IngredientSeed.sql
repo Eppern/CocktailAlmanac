@@ -49,14 +49,16 @@ set @whisky = (select Top 1 IngredientId from INGREDIENT where Name like '%Whi%'
 Declare @gin int
 set @gin = (select Top 1 IngredientId from INGREDIENT where Name like '%Gin%')
 
+Declare @vodka int
+set @vodka = (select Top 1 IngredientId from INGREDIENT where Name like '%Vod%')
+
 Declare @cream int
 set @cream = (select Top 1 IngredientId from INGREDIENT where Name like '%Crea%')
 
 INSERT INTO INGREDIENT_ALLERGEN VALUES
+(1, @vodka, @gluten),
 (1, @baileys, @dairy),
-(1, @kahlua, @dairy)
-
-INSERT INTO INGREDIENT_ALLERGEN VALUES
+(1, @kahlua, @dairy),
 (1, @whisky, @gluten),
 (1, @gin, @gluten)
 
