@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e457ddc801614f69bc2b6325a34b6d0b" Name="Diagram1" ZoomLevel="87">
-        <EntityTypeShape EntityType="CocktailModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="e457ddc801614f69bc2b6325a34b6d0b" Name="Diagram1" ZoomLevel="41">
+        <EntityTypeShape EntityType="CocktailModel.C__MigrationHistory" Width="1.5" PointX="5.625" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CocktailModel.ALLERGEN" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CocktailModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CocktailModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />

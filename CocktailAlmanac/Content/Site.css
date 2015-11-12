@@ -1,6 +1,8 @@
 ﻿body {
     padding-bottom: 20px;
     background-image: url('Bilder/cocktail_at_the_beach-1920x1200.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* Set padding to keep content from hitting the edges */
