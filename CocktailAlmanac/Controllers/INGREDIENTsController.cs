@@ -64,6 +64,9 @@ namespace CocktailAlmanac.Controllers {
             model.Ingredient.SubmittedBy = model.Ingredient.ModifiedBy;
             model.Ingredient.DateSubmitted = DateTime.Now;
             model.Ingredient.DateModified = DateTime.Now;
+            model.NutritionalInfos = db.NUTRITIONAL_INFO.ToList();
+            model.Allergens = db.ALLERGEN.ToList();
+
             if (ModelState.IsValid) {
                 db.INGREDIENT.Add(model.Ingredient);
                 db.SaveChanges();
@@ -71,7 +74,7 @@ namespace CocktailAlmanac.Controllers {
                 int id = model.Ingredient.IngredientId;
 
                 #region allergens
-                model.Allergens = db.ALLERGEN.ToList();
+                
                 for (int i = 0; i < model.Allergens.Count(); i++) {
                     INGREDIENT_ALLERGEN ia = new INGREDIENT_ALLERGEN() {
                         Present = model.SelectedAllergens[i],
@@ -83,7 +86,7 @@ namespace CocktailAlmanac.Controllers {
                 #endregion
 
                 #region nutritional info
-                model.NutritionalInfos = db.NUTRITIONAL_INFO.ToList();
+                
                 
                 for (int i = 0; i < model.NutritionalInfos.Count(); i++) {
                     model.IngredientNutritionalInfos[i].INGREDIENT = model.Ingredient;
@@ -97,7 +100,21 @@ namespace CocktailAlmanac.Controllers {
 
                 return RedirectToAction("Index");
             }
-            model.MeasurementUnits = new SelectList(db.MEASUREMENT_UNIT, "MeasurementUnitId", "ShortName", model.Ingredient.MeasurementUnitId);
+            model.Allergens = db.ALLERGEN.ToList();
+            model.NutritionalInfos = db.NUTRITIONAL_INFO.ToList();
+            model.SelectedAllergens = new List<bool>();
+            for (int i = 0; i < model.Allergens.Count(); i++)
+            {
+                model.SelectedAllergens.Add(false);
+            }
+            model.IngredientNutritionalInfos = new List<INGREDIENT_NUTRITIONAL_INFO>();
+
+            for (int i = 0; i < model.NutritionalInfos.Count(); i++)
+            {
+                model.IngredientNutritionalInfos.Add(new INGREDIENT_NUTRITIONAL_INFO());
+            }
+
+            model.MeasurementUnits = new SelectList(db.MEASUREMENT_UNIT, "MeasurementUnitId", "ShortName");
             return View(model);
         }
 
