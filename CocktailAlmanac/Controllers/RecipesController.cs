@@ -18,7 +18,7 @@ namespace CocktailAlmanac.Controllers
         // GET: Recipes
         public ActionResult Index()
         {
-            var rECIPE = db.RECIPE.Include(r => r.RECIPE_CATEGORY).Include(r => r.AspNetUsers).Include(r => r.AspNetUsers1);
+            var rECIPE = db.RECIPE.Include(r => r.RECIPE_CATEGORY).OrderBy(r => r.Name).Include(r => r.AspNetUsers).Include(r => r.AspNetUsers1);
             return View(rECIPE.ToList());
         }
 
